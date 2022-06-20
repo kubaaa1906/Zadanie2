@@ -1,6 +1,6 @@
 zad2: zad2.o libpk.a libos.so
 	sudo cp libos.so /usr/lib
-	gcc -o zad2 zad2.o libpk.a libos.so
+	gcc -o $@ $^
 
 zad2.o: zad2.c
 	gcc -c zad2.c
@@ -12,10 +12,10 @@ os.o: os.c
 	gcc -c os.c
 
 libpk.a: pk.o
-	ar rs libpk.a pk.o
+	ar rs $@ $<
 
 libos.so: os.o
-	gcc -shared -o libos.so os.o
+	gcc -shared -o $@ $<
 
 delete:
 	rm zad2.o
