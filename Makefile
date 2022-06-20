@@ -2,6 +2,12 @@
 
 .SUFFIXES: .c .o .a
 
+lib%.a: %.o
+	ar rs $@ $<
+
+lib%.so: %.o
+	gcc -shared -o $@ $<
+
 .c.o:
 	gcc -c $<
 
