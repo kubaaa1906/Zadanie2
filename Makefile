@@ -1,3 +1,13 @@
+.PHONY: clean
+
+.SUFFIXES: .c .o .a
+
+.c.o:
+	gcc -c $<
+
+.o:
+	gcc -o $@ $^
+
 zad2: zad2.o libpk.a libos.so
 	sudo cp libos.so /usr/lib
 	gcc -o $@ $^
@@ -17,7 +27,7 @@ libpk.a: pk.o
 libos.so: os.o
 	gcc -shared -o $@ $<
 
-delete:
+clean:
 	rm zad2.o
 	rm pk.o
 	rm os.o
